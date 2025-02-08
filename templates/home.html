@@ -1,0 +1,17 @@
+<form action="/document/upload" method="post" enctype="multipart/form-data">
+    <label for="file">New document</label>
+    <input type="file" id="file" name="file">
+    <label for="type">Document Type</label>
+    <select id="type" name="type">
+        <option value="analisys_materdomini">Analisi MaterDomini</option>
+        <option value="generic">Generic</option>
+    </select>
+    <button type="submit">Upload</button>
+</form>
+
+<h1>Documents</h1>
+<ul>
+    {% for document in documents %}
+    <li>{{ document[1] }} {{ document[2] }} <a href="/document/{{ document[0] }}">details</a></li>
+    {% endfor %}
+</ul>

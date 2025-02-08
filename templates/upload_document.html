@@ -1,0 +1,27 @@
+<h1>File uploaded</h1>
+<p><a href="/">Back to home</a></p>
+
+<p>File uploaded: {{filename}}</p>
+
+<form action="/document/save" method="post" enctype="multipart/form-data">
+    <label for="data">Data</label>
+    <input type="date" name="date" /> <br />
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var today = new Date().toISOString().split('T')[0];
+            document.querySelector('input[name="date"]').value = today;
+        });
+    </script>
+    <label for="prestazione">Prestazione</label>
+    <input type="prestazione" name="prestazione"> <br />
+    <input type="hidden" name="filename" value="{{filename}}" />
+    <textarea name="content" rows="20" cols="100">{{text}}</textarea> <br />
+
+
+    {% for value in values %}
+    {{value [0]}}:
+    <input type="hidden" name="analisys_names[]" value="{{value[0]}}"  />
+    <input type="text" name="analisys[]" value="{{value[1]}}"  /> <br />
+    {% endfor %}
+    <button type="submit">Save</button>
+</form>
